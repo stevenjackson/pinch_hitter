@@ -1,0 +1,77 @@
+<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+   <soapenv:Header></soapenv:Header>
+   <soapenv:Body>
+      <SubmitXmlResponse>
+         <SubmitXmlResult>
+            <CarStandardAvail_9 xmlns="">
+               <CarAvailDetail>
+                  <Signature>0</Signature>
+                  <DataQual>
+                     <MktgTxtAry></MktgTxtAry>
+                     <RateSepTextAry></RateSepTextAry>
+                     <RefPt>GRAND FORKS MARK ANDREWS IN</RefPt>
+                     <City>GFK</City>
+                     <State>ND</State>
+                     <Country>US</Country>
+                     <DistUnit>M</DistUnit>
+                     <RateTypeDesc>DAILY</RateTypeDesc>
+                     <RateCatDesc> STND/PROM</RateCatDesc>
+                     <Currency>USD</Currency>
+                     <DecPos>2</DecPos>
+                     <TruncDec>N</TruncDec>
+                     <AltRateInd>5</AltRateInd>
+                     <MoreCarsInd>N</MoreCarsInd>
+                     <CarDetailAry>
+                        <CarDetail>
+                           <Vnd>ZI</Vnd>
+                           <LocAffiliate>001</LocAffiliate>
+                           <PrimeLocn>P</PrimeLocn>
+                           <LinkInd>I</LinkInd>
+                           <City>GFK</City>
+                           <LocnCat>T</LocnCat>
+                           <LocnExpansion></LocnExpansion>
+                           <LocnNum>1</LocnNum>
+                           <LocnCarRental>T</LocnCarRental>
+                           <Dist></Dist>
+                           <Dir>T</Dir>
+                           <GeoLat></GeoLat>
+                           <GeoLon></GeoLon>
+                           <CarType>MVAR</CarType>
+                           <YieldMgmt></YieldMgmt>
+                           <Amt>10299</Amt>
+                           <BaseRateAmt>10299</BaseRateAmt>
+                           <DropChargeIncInd></DropChargeIncInd>
+                           <UpsellInd></UpsellInd>
+                           <RatePlcmtInd>3</RatePlcmtInd>
+                           <RateType>D</RateType>
+                           <RateGuar>G</RateGuar>
+                           <AdditionalCharges></AdditionalCharges>
+                           <AvailStatus>N</AvailStatus>
+                           <MileRate>22</MileRate>
+                           <Mile> 100</Mile>
+                           <DropOffRestrictions>Y</DropOffRestrictions>
+                           <RateCat>S</RateCat>
+                           <MileageRestrictInd></MileageRestrictInd>
+                           <FltInd></FltInd>
+                           <CCInd></CCInd>
+                           <Rate>2E</Rate>
+                           <InclRateQual>
+                              <RateDesc>DAILY PROMO</RateDesc>
+                              <InclRate1></InclRate1>
+                              <InclRate2></InclRate2>
+                              <InclRate3></InclRate3>
+                              <InclRate4></InclRate4>
+                              <PrePayInd></PrePayInd>
+                              <CarTypeDesc>FORD FREESTAR 4DR/7PS</CarTypeDesc>
+                              <DropChargeAmt></DropChargeAmt>
+                              <ApproxTotAmt>12762</ApproxTotAmt>
+                           </InclRateQual>
+                        </CarDetail>
+                     </CarDetailAry>
+                  </DataQual>
+               </CarAvailDetail>
+            </CarStandardAvail_9>
+         </SubmitXmlResult>
+      </SubmitXmlResponse>
+   </soapenv:Body>
+</soapenv:Envelope>
