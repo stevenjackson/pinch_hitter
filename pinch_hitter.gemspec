@@ -21,7 +21,6 @@ Gem::Specification.new do |gem|
   gem.add_dependency 'nokogiri', '>= 1.5.6'
   gem.add_dependency 'json', '>= 1.7.6'
 
-  gem.add_development_dependency 'debugger', '>= 1.2.3'
   gem.add_development_dependency 'minitest', '>= 4.3.3'
   gem.add_development_dependency 'rack-test', '>= 0.6.2'
   gem.add_development_dependency 'rake', '>= 10.0.3'
