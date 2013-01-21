@@ -15,9 +15,14 @@ def app
 end
 
 def mock
-  @mock ||= MockWebService.new app_host, app_port
+  @@mock ||= MockWebService.new app_host, app_port
 end
 
 def messages
   mock.message_store
 end
+
+at_exit do
+  mock.stop_service
+end
+
