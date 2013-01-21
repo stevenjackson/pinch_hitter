@@ -45,7 +45,7 @@ module PinchHitter
         respond params[:splat].first
       end
 
-      def store(endpoint='/', message)
+      def store(endpoint='/', message=nil)
         @@responses.store endpoint, message
       end
 
