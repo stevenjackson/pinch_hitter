@@ -4,8 +4,7 @@ require 'cucumber'
 require 'cucumber/rake/task'
 require "bundler/gem_tasks"
 
-task :default => :test
-Rake::TestTask.new do |t|
+Rake::TestTask.new(:unit) do |t|
   t.libs << 'test'
   t.pattern = 'test/**/test_*\.rb'
 end
@@ -13,3 +12,8 @@ end
 Cucumber::Rake::Task.new(:features) do |t|
   t.profile = 'default'
 end
+
+desc 'Run all unit tests and features'
+task :test => [:unit, :features]
+
+task :default => :test
