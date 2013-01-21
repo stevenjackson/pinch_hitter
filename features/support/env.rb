@@ -2,25 +2,22 @@ require 'rspec-expectations'
 require 'pinch_hitter'
 require 'net/http'
 
-class MockWebService
-  include PinchHitter
-
-  def initialize
-    self.connect '127.0.0.1', 9292
-    self.messages_directory = File.join(File.dirname('.'), 'features', 'messages')
-  end
-
+def app_host
+  '127.0.0.1'
 end
 
-def mock
-  @mock ||= MockWebService.new
+def app_port
+  9292
 end
 
 def app
-  @app ||= Net::HTTP.new '127.0.0.1', 9292
+  @app ||= Net::HTTP.new app_host, app_port
+end
+
+def mock
+  @mock ||= MockWebService.new app_host, app_port
 end
 
 def messages
   mock.message_store
 end
-
