@@ -20,17 +20,17 @@ module PinchHitter
 
       post '/reset' do
         @@responses.reset
-        200
+        status 200
       end
 
       post '/store/*' do
         store "/#{params[:splat].first}", request.body.read
-        200
+        status 200
       end
 
       post '/store' do
         store request["endpoint"], request.body.read
-        200
+        status 200
       end
 
       post '/respond' do
