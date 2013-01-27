@@ -22,17 +22,33 @@ module PinchHitter
 
       def replace_json(content, overrides={})
         return content if overrides.empty?
-        modified = child = parent = JSON.parse(content).clone
-        overrides.each do |key, value| 
-
-          key.each do |part|
-            parent = child 
-            child = parent.send "fetch", part
+        doc = JSON.parse(content)
+        overrides.each do |key, value|
+          hash = find_nested_hash(doc, key)
+          if has_key(hash, key)
+            hash[key] = value
           end
-          parent[key.last] = value
         end
-        modified.to_s
+        doc.to_s
       end
+
+      def find_nested_hash(parent, key)
+        return parent if has_key(parent, key)
+        return nil unless parent.respond_to? :each
+
+        found = nil
+        parent.find do |parent_key, child|
+          found = find_nested_hash(child, key)
+        end
+        found
+      end
+
+      def has_key(hash, key)
+        hash.respond_to?(:key?) && hash.key?(key)
+      end
+
+     
+
     end
   end
 end

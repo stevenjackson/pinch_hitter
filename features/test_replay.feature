@@ -21,3 +21,7 @@ Feature:  Test WS replay
     When I query the glossary
     Then I see a definition
 
+  Scenario:  Replay with json substituion
+    Given I want to lookup a definition with a "ID" of "FOO"
+    When I query the glossary
+    Then I see a definition with a "ID" of "FOO"

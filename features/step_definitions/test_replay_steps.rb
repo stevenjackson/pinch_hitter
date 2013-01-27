@@ -33,3 +33,11 @@ end
 Then /^I see a definition$/ do
   @response.body.to_s.should == messages.load(:glossary).squish
 end
+
+Given /^I want to lookup a definition with a "(.*?)" of "(.*?)"$/ do |key, value|
+  mock.prime '/glossary', :glossary, key => value
+end
+
+Then /^I see a definition with a "(.*?)" of "(.*?)"$/ do |key, value|
+  @response.body.to_s.should == messages.load(:glossary, { key => value }).squish
+end

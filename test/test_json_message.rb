@@ -25,6 +25,9 @@ class TestJsonMessage < MiniTest::Unit::TestCase
   "value": "File",
   "popup": {
     "menuitem": "OpenDoc()"
+  },
+  "trigger" : {
+    "action" : "confirm"
   }
 }}
 }
@@ -35,7 +38,7 @@ class TestJsonMessage < MiniTest::Unit::TestCase
   end
 
   def test_message_with_overrides
-    json = @test.json_message(filename, {["menu", "popup", "menuitem"] => 'WhatsUpDoc?' })
+    json = @test.json_message(filename, {"menuitem" => 'WhatsUpDoc?' })
     assert json.include? "WhatsUpDoc?"
   end
 end
