@@ -52,4 +52,10 @@ class TestPinchHitter < MiniTest::Unit::TestCase
     assert_equal message_content, session.last_response.body
   end
 
+  def test_store
+    @test.store '/foo', message_content
+    session.get '/foo'
+    assert_equal message_content, session.last_response.body
+  end
+
 end

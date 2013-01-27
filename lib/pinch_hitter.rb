@@ -23,7 +23,11 @@ module PinchHitter
   end
 
   def prime(endpoint, message, overrides={})
-    @session.post "/store?endpoint=#{endpoint}", message_store.load(message, overrides)
+    store endpoint, message_store.load(message, overrides)
+  end
+
+  def store(endpoint, content)
+    @session.post "/store?endpoint=#{endpoint}", content
   end
 
 end
