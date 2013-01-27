@@ -1,2 +1,5 @@
 === Release 0.1 / 2013-1-20
 Initial release of the gem
+
+=== Release 0.2 / 2013-1-27
+Switch json to do overrides by key rather than path (like xml)
