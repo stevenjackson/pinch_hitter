@@ -26,6 +26,7 @@ See Rakefile for test options
 ## Standalone
 
 Start the service using rackup
+
     $ rackup
 
 ## Contributing
