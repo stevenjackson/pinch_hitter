@@ -17,14 +17,7 @@ Or install it yourself as:
 
 ## Purpose
 
-Simulate those pesky external web services for testing and gain control over the data that's returned.  Pinch Hitter stands in for one or many services, it expects the test to tell it what to serve up to the application under test.
-
-Any xml or json posted to the /store endpoint will be returned in FIFO order with the corresponding endpoint is called.
-
-    For instance, a POST to /store/user will be returned when a GET or POST to /user is called.
-    Or a POST to /store?endpoint=user will prime the /user endpoint in the same way.
-
-Multiple endpoints can be stored, each endpoint has it's own FIFO queue.  Once a message is served, it's gone and must be primed again.
+Simulate those pesky external web services for testing and gain control over the data that's returned.  Pinch Hitter can stand in for one or many services.  The test controls the content that is served in an order it controls to the application under test.
 
 See the [wiki](https://github.com/stevenjackson/pinch_hitter/wiki) for more details
 
