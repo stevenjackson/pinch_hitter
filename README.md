@@ -26,7 +26,7 @@ Any xml or json posted to the /store endpoint will be returned in FIFO order wit
 
 Multiple endpoints can be stored, each endpoint has it's own FIFO queue.  Once a message is served, it's gone and must be primed again.
 
-See the [wiki[https://github.com/stevenjackson/pinch_hitter/wiki]] for more details
+See the [wiki](https://github.com/stevenjackson/pinch_hitter/wiki) for more details
 
 See Rakefile for test options
 
