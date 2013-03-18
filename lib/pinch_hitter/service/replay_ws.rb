@@ -33,6 +33,11 @@ module PinchHitter
         status 200
       end
 
+      post '/store_module' do
+        store_module request["endpoint"], request.body.read
+        status 200
+      end
+
       post '/respond' do
         respond nil
       end
@@ -54,6 +59,10 @@ module PinchHitter
         content_type determine_content_type message
         puts "No message found for #{endpoint}" unless message
         message
+      end
+
+      def store_module(endpoint='/', mod='')
+        
       end
 
     end

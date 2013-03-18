@@ -4,9 +4,11 @@ require 'pinch_hitter/service/replay_ws'
 require 'minitest/autorun'
 require 'rack/test'
 require 'nokogiri'
+require_relative 'message_assertions'
 
 class TestService < MiniTest::Unit::TestCase
   include Rack::Test::Methods
+  include MessageAssertions
 
   def app
     PinchHitter::Service::ReplayWs
@@ -91,23 +93,4 @@ class TestService < MiniTest::Unit::TestCase
     assert_equal '', last_response.body
   end
 
-  def xml_message
-    message = %Q{<?xml version="1.0" encoding="UTF-8"?>
-      <env:Envelope xmlns:env="http://www.w3.org/2003/05/soap-envelope" xmlns:replay="http://www.leandog.com/replay">
-        <env:Body>
-          <replay:Response>BARK!</replay:Response>
-        </env:Body>
-    </env:Envelope>}
-  end
-
-  def yml_message
-   %Q~{"menu": {
-      "id": "file",
-      "value": "File"
-    }}~
-  end
-
-  def assert_received(message)
-    assert_equal message.gsub(/\n\s*/, ''), last_response.body.strip
-  end
 end
