@@ -30,4 +30,8 @@ module PinchHitter
     @session.post "/store?endpoint=#{endpoint}", content
   end
 
+  def register_module(endpoint, handler)
+    @session.post "/register_module?endpoint=#{endpoint}", Marshal.dump(handler)
+  end
+
 end

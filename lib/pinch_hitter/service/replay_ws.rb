@@ -46,15 +46,15 @@ module PinchHitter::Service
     end
 
     post '/*' do
-      respond params[:splat].first
+      respond params[:splat].first, request.body.read
     end
 
     def store(endpoint='/', message=nil)
       @@handlers.store_message endpoint, message
     end
 
-    def respond(endpoint='/')
-      message = @@handlers.respond_to endpoint
+    def respond(endpoint='/', request=nil)
+      message = @@handlers.respond_to endpoint, request
       content_type determine_content_type message
       puts "No message found for #{endpoint}" unless message
       message

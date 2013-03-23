@@ -25,3 +25,13 @@ Feature:  Test WS replay
     Given I want to lookup a definition with a "ID" of "FOO"
     When I query the glossary
     Then I see a definition with a "ID" of "FOO"
+
+  Scenario Outline:  Replay with custom module
+    Given I want to do some fancy processing
+    When I query my service with <request>
+    Then I see <response> in the service response
+
+    Examples:
+      |request| response   |
+      |ABC    | 123        |
+      |DEF    | Comedy Jam |

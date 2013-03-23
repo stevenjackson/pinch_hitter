@@ -41,3 +41,15 @@ end
 Then /^I see a definition with a "(.*?)" of "(.*?)"$/ do |key, value|
   @response.body.to_s.should == messages.load(:glossary, { key => value }).squish
 end
+
+Given(/^I want to do some fancy processing$/) do
+  mock.register_module('/service', XmlParser)
+end
+
+When(/^I query my service with (.*?)$/) do |request|
+  @response = app.post '/service', "<request>#{request}</request>"
+end
+
+Then(/^I see (.*?) in the service response$/) do |response|
+  @response.body.to_s.should == "<response>#{response}</response>"
+end
