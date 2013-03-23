@@ -23,8 +23,8 @@ module PinchHitter
       def wait_for_replay(timeout)
         end_time = ::Time.now + timeout
         until ::Time.now > end_time
-          return if @replay_service.stop?
           sleep 0.25
+          return if @replay_service.stop?
         end
         raise 'Timed out waiting for replay service to start'
       end

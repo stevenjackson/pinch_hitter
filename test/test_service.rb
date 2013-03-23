@@ -93,4 +93,18 @@ class TestService < MiniTest::Unit::TestCase
     assert_equal '', last_response.body
   end
 
+  def test_module
+    post '/register_module?endpoint=stuff', Marshal.dump(TestModule)
+    post '/stuff', ''
+
+    assert_received xml_message
+  end
+
+  module TestModule
+    include MessageAssertions
+    def respond_to(message)
+      xml_message
+    end
+  end
+
 end
