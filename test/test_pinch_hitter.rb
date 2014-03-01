@@ -58,4 +58,13 @@ class TestPinchHitter < MiniTest::Unit::TestCase
     assert_equal message_content, session.last_response.body
   end
 
+  def test_received_requests
+    @test.store '/foo', message_content
+    @test.store '/foo', message_content
+    requests = [ '{"abc": "123"}', '{"def": "456"}' ]
+    session.post '/foo', requests.first
+    session.post '/foo', requests.last
+    assert_equal requests, @test.received_requests('/foo')
+  end
+
 end

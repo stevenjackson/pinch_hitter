@@ -15,6 +15,10 @@ module PinchHitter::Service
       message.squish if message
     end
 
+    def requests(endpoint)
+      handler_for(endpoint).requests
+    end
+
     def handler_for(endpoint='/')
       handlers[normalize(endpoint)] || store_handler(endpoint) 
     end

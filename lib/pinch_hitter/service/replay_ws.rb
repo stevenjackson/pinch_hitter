@@ -37,6 +37,10 @@ module PinchHitter::Service
       status 200
     end
 
+    get '/received_requests' do
+      requests request["endpoint"]
+    end
+
     post '/respond' do
       respond nil
     end
@@ -62,6 +66,11 @@ module PinchHitter::Service
 
     def register_module(endpoint='/', mod='')
       @@handlers.register_module endpoint, Marshal.load(mod)
+    end
+
+    def requests endpoint
+      content_type 'application/json'
+      { requests: @@handlers.requests(endpoint) }.to_json
     end
 
   end

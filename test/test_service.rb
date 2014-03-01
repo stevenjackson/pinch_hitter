@@ -107,4 +107,15 @@ class TestService < MiniTest::Unit::TestCase
     end
   end
 
+  def test_received_requests
+    user_post = '{ "command": "Gimme stuff" }'
+    post "/store?endpoint=do_things", xml_message
+    post "/do_things", user_post
+    get '/received_requests?endpoint=do_things'
+
+    jsonified_response = { requests: [user_post] }.to_json
+
+    assert_equal jsonified_response, last_response.body
+  end
+
 end

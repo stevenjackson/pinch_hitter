@@ -34,4 +34,9 @@ module PinchHitter
     @session.post "/register_module?endpoint=#{endpoint}", Marshal.dump(handler)
   end
 
+  def received_requests(endpoint)
+    requests = @session.get "/received_requests?endpoint=#{endpoint}"
+    JSON.parse(requests.body)['requests']
+  end
+
 end

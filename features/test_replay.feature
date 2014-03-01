@@ -35,3 +35,14 @@ Feature:  Test WS replay
       |request| response   |
       |ABC    | 123        |
       |DEF    | Comedy Jam |
+
+  Scenario:  Retrieve posts
+    Given I want a car rental
+    When I make a reservation
+    Then the service has received 1 reservation
+
+  Scenario:  Retrieve multiple posts
+    Given I want 3 car rentals
+    When I make 3 reservations
+    Then the service has received 3 reservations
+

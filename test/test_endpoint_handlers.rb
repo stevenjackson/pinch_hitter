@@ -49,6 +49,13 @@ class TestEndpointHandlers < MiniTest::Unit::TestCase
     assert_equal "THIS IS A TEST", @handlers.respond_to('endpoint')
   end
 
+  def test_requests
+    request = '{"Hot Rod" : "Williams"}'
+    @handlers.store_message 'endpoint', json
+    @handlers.respond_to('endpoint', request)
+    assert_equal [request], @handlers.requests('endpoint')
+  end
+
 
   module TestModule
     def respond_to(msg)
