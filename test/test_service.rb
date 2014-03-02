@@ -1,12 +1,9 @@
 ENV['RACK_ENV'] = 'test'
 
-require 'pinch_hitter/service/replay_ws'
 require 'minitest/autorun'
-require 'rack/test'
-require 'nokogiri'
 require_relative 'message_assertions'
 
-class TestService < MiniTest::Unit::TestCase
+class TestService < MiniTest::Test
   include Rack::Test::Methods
   include MessageAssertions
 

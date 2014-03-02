@@ -2,7 +2,7 @@ ENV['RACK_ENV'] = 'test'
 
 require 'minitest/autorun'
 
-class TestEndpointRecorder < MiniTest::Unit::TestCase
+class TestEndpointRecorder < MiniTest::Test
 
   def setup
     @mock = MiniTest::Mock.new

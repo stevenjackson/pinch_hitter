@@ -1,11 +1,10 @@
 ENV['RACK_ENV'] = 'test'
 
-require 'pinch_hitter/service/replay_ws'
-require 'pinch_hitter'
 require 'minitest/autorun'
+require 'pinch_hitter'
 require 'rack/test'
 
-class TestPinchHitter < MiniTest::Unit::TestCase
+class TestPinchHitter < MiniTest::Test
   include Rack::Test::Methods
 
   def setup

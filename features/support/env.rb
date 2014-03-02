@@ -15,7 +15,7 @@ def app
 end
 
 def mock
-  @@mock ||= MockWebService.new app_host, app_port
+  $mock ||= MockWebService.new app_host, app_port
 end
 
 def messages

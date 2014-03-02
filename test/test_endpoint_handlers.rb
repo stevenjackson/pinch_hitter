@@ -1,10 +1,8 @@
 ENV['RACK_ENV'] = 'test'
 
 require 'minitest/autorun'
-require 'pinch_hitter/service/endpoint_handlers'
 
-
-class TestEndpointHandlers < MiniTest::Unit::TestCase
+class TestEndpointHandlers < MiniTest::Test
 
   def setup
     @handlers = PinchHitter::Service::EndpointHandlers.new

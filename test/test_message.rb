@@ -1,9 +1,8 @@
-
 ENV['RACK_ENV'] = 'test'
 
 require 'minitest/autorun'
-require 'pinch_hitter/message/message_store'
-class TestMessage < MiniTest::Unit::TestCase
+
+class TestMessage < MiniTest::Test
 
   def setup
    File.open("#{xml_filename}.xml", 'w') {|f| f.write(xml_message) }

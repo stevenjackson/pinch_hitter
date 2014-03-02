@@ -1,9 +1,8 @@
-
 ENV['RACK_ENV'] = 'test'
 
 require 'minitest/autorun'
 
-class TestJsonMessage < MiniTest::Unit::TestCase
+class TestJsonMessage < MiniTest::Test
 
   def setup
    File.open(filename, 'w') {|f| f.write(our_message) }

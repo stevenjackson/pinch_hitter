@@ -2,7 +2,7 @@ ENV['RACK_ENV'] = 'test'
 
 require 'minitest/autorun'
 
-class TestXmlMessage < MiniTest::Unit::TestCase
+class TestXmlMessage < MiniTest::Test
 
   def setup
    File.open(filename, 'w') {|f| f.write(our_message) }
