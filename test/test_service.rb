@@ -131,9 +131,10 @@ class TestService < MiniTest::Unit::TestCase
     post "/do_things", user_post
     get '/received_requests?endpoint=do_things'
 
-    jsonified_response = { requests: [user_post] }.to_json
-
-    assert_equal jsonified_response, last_response.body
+    response = JSON.parse(last_response.body)['requests']
+    assert_equal 1, response.length
+    assert_equal user_post, response.first['body']
+    assert response.first['headers']
   end
 
 end

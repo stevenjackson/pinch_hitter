@@ -1,4 +1,5 @@
 require_relative 'message_queue'
+require_relative 'endpoint_recorder'
 
 module PinchHitter::Service
   class EndpointHandlers
@@ -7,10 +8,10 @@ module PinchHitter::Service
     end
 
     def store_message(endpoint, body)
-      handler_for(endpoint) << body.squish
+      handler_for(endpoint).store body.squish
     end
 
-    def respond_to(endpoint='/', request='')
+    def respond_to(endpoint='/', request=nil)
       message = handler_for(endpoint).respond_to(request)
       message.squish if message
     end
@@ -30,7 +31,7 @@ module PinchHitter::Service
     end
 
     def store_handler(endpoint, handler=MessageQueue.new)
-      handlers[normalize(endpoint)] = handler
+      handlers[normalize(endpoint)] = EndpointRecorder.new handler
     end
 
     def normalize(endpoint)
@@ -39,11 +40,7 @@ module PinchHitter::Service
     end
 
     def reset
-      handlers.values.each do |handler|
-        if(handler.respond_to? :reset)
-          handler.reset
-        end
-      end
+      handlers.values.each(&:reset)
     end
   end
 end

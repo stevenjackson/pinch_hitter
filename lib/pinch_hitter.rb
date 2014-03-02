@@ -36,7 +36,12 @@ module PinchHitter
 
   def received_requests(endpoint)
     requests = @session.get "/received_requests?endpoint=#{endpoint}"
-    JSON.parse(requests.body)['requests']
+    requests = JSON.parse(requests.body)['requests']
+    requests.map { |h| Struct.new(:body, :headers).new(h['body'], h['headers']) }
+  end
+
+  def received_messages(endpoint)
+    received_requests(endpoint).map { |request| request.body }
   end
 
 end

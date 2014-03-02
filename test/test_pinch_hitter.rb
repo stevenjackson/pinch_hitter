@@ -12,7 +12,8 @@ class TestPinchHitter < MiniTest::Unit::TestCase
    @test = Object.new
    @test.extend(PinchHitter)
    @test.session=session
-  @test.messages_directory = File.dirname('.')
+   @test.reset
+   @test.messages_directory = File.dirname('.')
    File.open(message_file, 'w') {|f| f.write(message_content) }
   end
 
@@ -67,13 +68,24 @@ class TestPinchHitter < MiniTest::Unit::TestCase
     assert_equal message_content, session.last_response.body
   end
 
+  def test_received_request_body
+    update_request = '{"update": "please"}'
+    session.put '/foo', update_request
+    assert_equal update_request, @test.received_requests('/foo').first.body
+  end
+
+  def test_received_requests_headers
+    session.delete '/foo'
+    headers = @test.received_requests('/foo').first.headers
+  end
+
   def test_received_requests
     @test.store '/foo', message_content
     @test.store '/foo', message_content
-    requests = [ '{"abc": "123"}', '{"def": "456"}' ]
-    session.post '/foo', requests.first
-    session.post '/foo', requests.last
-    assert_equal requests, @test.received_requests('/foo')
+    messages = [ '{"abc": "123"}', '{"def": "456"}' ]
+    session.post '/foo', messages.first
+    session.post '/foo', messages.last
+    assert_equal messages, @test.received_messages('/foo')
   end
 
 end

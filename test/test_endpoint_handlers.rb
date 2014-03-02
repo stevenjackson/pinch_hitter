@@ -14,13 +14,6 @@ class TestEndpointHandlers < MiniTest::Unit::TestCase
     %Q{{"key"::"value"}}
   end
 
-  def test_message_queue
-    @handlers.store_message 'endpoint', json 
-    handler = @handlers.handler_for 'endpoint'
-    assert_instance_of(PinchHitter::Service::MessageQueue, handler)
-    assert_equal json, handler.respond_to 
-  end
-
   def test_defaults_to_message_queue
     @handlers.store_message 'endpoint', json
     assert_equal json, @handlers.respond_to('endpoint')
@@ -50,8 +43,7 @@ class TestEndpointHandlers < MiniTest::Unit::TestCase
   end
 
   def test_requests
-    request = '{"Hot Rod" : "Williams"}'
-    @handlers.store_message 'endpoint', json
+    request = { body: '{"Hot Rod" : "Williams"}' }
     @handlers.respond_to('endpoint', request)
     assert_equal [request], @handlers.requests('endpoint')
   end

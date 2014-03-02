@@ -46,23 +46,23 @@ module PinchHitter::Service
     end
 
     get '/*' do
-      respond params[:splat].first
+      respond params[:splat].first, request
     end
 
     delete '/*' do
-      respond params[:splat].first
+      respond params[:splat].first, request
     end
 
     post '/*' do
-      respond params[:splat].first, request.body.read
+      respond params[:splat].first, request
     end
 
     put '/*' do
-      respond params[:splat].first, request.body.read
+      respond params[:splat].first, request
     end
 
     patch '/*' do
-      respond params[:splat].first, request.body.read
+      respond params[:splat].first, request
     end
 
     def store(endpoint='/', message=nil)
@@ -70,7 +70,7 @@ module PinchHitter::Service
     end
 
     def respond(endpoint='/', request=nil)
-      message = @@handlers.respond_to endpoint, request
+      message = @@handlers.respond_to endpoint, wrap(request)
       content_type determine_content_type message
       puts "No message found for #{endpoint}" unless message
       message
@@ -85,5 +85,13 @@ module PinchHitter::Service
       { requests: @@handlers.requests(endpoint) }.to_json
     end
 
+    def wrap request
+      return nil unless request
+      { headers: request_headers, body: request.body.read }
+    end
+
+    def request_headers
+      env.select { |key, value| key.upcase == key }
+    end
   end
 end
