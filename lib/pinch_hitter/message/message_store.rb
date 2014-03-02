@@ -25,7 +25,11 @@ module PinchHitter::Message
     end
 
     def find_filename(file)
-      Dir["#{message_directory}/#{file}*"].first
+      filename = Dir["#{message_directory}/#{file}*"].first
+      unless filename
+        fail "Could not find message for '#{file}' in '#{File.expand_path(File.dirname(message_directory))}'"
+      end
+      filename
     end
 
   end

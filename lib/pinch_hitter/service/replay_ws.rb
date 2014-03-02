@@ -49,7 +49,19 @@ module PinchHitter::Service
       respond params[:splat].first
     end
 
+    delete '/*' do
+      respond params[:splat].first
+    end
+
     post '/*' do
+      respond params[:splat].first, request.body.read
+    end
+
+    put '/*' do
+      respond params[:splat].first, request.body.read
+    end
+
+    patch '/*' do
       respond params[:splat].first, request.body.read
     end
 

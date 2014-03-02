@@ -93,6 +93,24 @@ class TestService < MiniTest::Unit::TestCase
     assert_equal '', last_response.body
   end
 
+  def test_put
+    post '/store/endpoint1', xml_message
+    put '/endpoint1'
+    assert_received xml_message
+  end
+
+  def test_patch
+    post '/store/endpoint1', xml_message
+    patch '/endpoint1'
+    assert_received xml_message
+  end
+
+  def test_delete
+    post '/store/endpoint1', xml_message
+    delete '/endpoint1'
+    assert_received xml_message
+  end
+
   def test_module
     post '/register_module?endpoint=stuff', Marshal.dump(TestModule)
     post '/stuff', ''

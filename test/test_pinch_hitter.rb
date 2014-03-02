@@ -27,7 +27,7 @@ class TestPinchHitter < MiniTest::Unit::TestCase
   def message_content
     "{fizzbuzz}"
   end
-  
+
   def app
     PinchHitter::Service::ReplayWs
   end
@@ -50,6 +50,15 @@ class TestPinchHitter < MiniTest::Unit::TestCase
     @test.prime '/foo', message_file.to_sym
     session.get '/foo'
     assert_equal message_content, session.last_response.body
+  end
+
+  def test_prime_with_missing_message
+    begin
+      @test.prime '/foo', :non_existent_file
+    rescue => e
+      assert_match "Could not find message", e.message
+      assert_match :non_existent_file.to_s, e.message
+    end
   end
 
   def test_store

@@ -6,20 +6,8 @@ Given /^I want a car rental$/ do
   mock.prime '/car_rental', :car_rental
 end
 
-Given /^I want (\d+) car rentals$/ do |number|
-  number.to_i.times.each do
-    mock.prime '/car_rental', :car_rental
-  end
-end
-
 When /^I make a reservation$/ do
   @response = app.post '/car_rental', '{"reservation": "yes"}'
-end
-
-When /^I make (\d+) reservations$/ do |number|
-  number.to_i.times.each do
-    app.post '/car_rental', '{"reservation": "yes"}'
-  end
 end
 
 Then /^I see a car reservation$/ do
@@ -32,10 +20,6 @@ end
 
 Then /^I see a car reservation with a "(.*?)" of "(.*?)"$/ do |tag, text|
   @response.body.to_s.should == messages.load(:car_rental, { tag => text }).squish
-end
-
-Then /^the service has received (\d+) reservation(?:s?)$/ do |number|
-  mock.received_requests('/car_rental').count.should == number.to_i
 end
 
 Given /^I want to lookup a definition$/ do
@@ -68,4 +52,16 @@ end
 
 Then(/^I see (.*?) in the service response$/) do |response|
   @response.body.to_s.should == "<response>#{response}</response>"
+end
+
+Given(/^I have a car reservation I want to delete$/) do
+  mock.prime '/car_rental', :cancelled_reservation
+end
+
+When(/^I delete a car reservation$/) do
+  @response = app.delete '/car_rental'
+end
+
+Then(/^I should see a car reservation cancellation$/) do
+  @response.body.to_s.should == messages.load(:cancelled_reservation).squish
 end
