@@ -10,7 +10,11 @@ Rake::TestTask.new(:unit) do |t|
 end
 
 Cucumber::Rake::Task.new(:features) do |t|
-  t.profile = 'default'
+  if RUBY_VERSION == '1.9.3'
+    t.profile = '1.9.2'
+  else
+    t.profile = 'default'
+  end
 end
 
 desc 'Run all unit tests and features'

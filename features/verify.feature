@@ -13,9 +13,15 @@ Feature:  Verify application's output
   Scenario Outline: HTTP methods
     When I do a <method> on "<endpoint>"
     Then the service has recieved a request on "<endpoint>"
-
     Examples:
       | method | endpoint |
       | POST   | /poster  |
       | PUT    | /putter  |
+
+  @not_1.9.2
+  Scenario Outline: HTTP methods
+    When I do a <method> on "<endpoint>"
+    Then the service has recieved a request on "<endpoint>"
+    Examples:
+      | method | endpoint |
       | PATCH  | /patcher |

@@ -21,7 +21,7 @@ module PinchHitter::Service
     end
 
     def handler_for(endpoint='/')
-      handlers[normalize(endpoint)] || store_handler(endpoint) 
+      handlers[normalize(endpoint)] || store_handler(endpoint)
     end
 
     def register_module(endpoint, mod)
