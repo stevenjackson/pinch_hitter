@@ -19,3 +19,10 @@ end
 Then(/^the service has recieved a request on "(.*?)"$/) do |endpoint|
   mock.received_requests(endpoint).count.should be > 0
 end
+
+When /^the headers for the request on "(.*?)" should contain:$/ do |endpoint, table|
+  headers = mock.received_requests(endpoint).first.headers
+  table.rows_hash.each do |key, value|
+    headers[key].should == value
+  end
+end

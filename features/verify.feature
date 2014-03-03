@@ -25,3 +25,16 @@ Feature:  Verify application's output
     Examples:
       | method | endpoint |
       | PATCH  | /patcher |
+
+  Scenario: Verifying headers
+    When I do a POST on "/poster"
+    #This is not an exhaustive list
+    When the headers for the request on "/poster" should contain:
+      | PATH_INFO       | /poster   |
+      | QUERY_STRING    |           |
+      | REQUEST_METHOD  | POST      |
+      | SERVER_NAME     | 127.0.0.1 |
+      | SERVER_PORT     | 9292      |
+      | SERVER_PROTOCOL | HTTP/1.1  |
+      | HTTP_VERSION    | HTTP/1.1  |
+      | REQUEST_PATH    | /poster   |
