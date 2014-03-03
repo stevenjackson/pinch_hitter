@@ -34,14 +34,14 @@ module PinchHitter
     @session.post "/register_module?endpoint=#{endpoint}", Marshal.dump(handler)
   end
 
-  def received_requests(endpoint)
+  def request_log(endpoint)
     requests = @session.get "/received_requests?endpoint=#{endpoint}"
     requests = JSON.parse(requests.body)['requests']
     requests.map { |h| Struct.new(:body, :headers).new(h['body'], h['headers']) }
   end
 
   def received_messages(endpoint)
-    received_requests(endpoint).map { |request| request.body }
+    request_log(endpoint).map { |request| request.body }
   end
 
 end

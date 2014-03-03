@@ -67,18 +67,18 @@ class TestPinchHitter < MiniTest::Test
     assert_equal message_content, session.last_response.body
   end
 
-  def test_received_request_body
+  def test_request_body
     update_request = '{"update": "please"}'
     session.put '/foo', update_request
-    assert_equal update_request, @test.received_requests('/foo').first.body
+    assert_equal update_request, @test.request_log('/foo').first.body
   end
 
-  def test_received_requests_headers
+  def test_request_headers
     session.delete '/foo'
-    headers = @test.received_requests('/foo').first.headers
+    headers = @test.request_log('/foo').first.headers
   end
 
-  def test_received_requests
+  def test_received_messages
     @test.store '/foo', message_content
     @test.store '/foo', message_content
     messages = [ '{"abc": "123"}', '{"def": "456"}' ]

@@ -7,6 +7,6 @@ Switch json to do overrides by key rather than path (like xml)
 === Release 0.3 / 2013-3-22
 Add ability to register modules for custom message handling
 
-=== Release 0.4 / 2014-3
+=== Release 0.4 / 2014-3-3
 * Add ability to retrieve requests made by the application
 * Support PUT, PATCH, DELETE
