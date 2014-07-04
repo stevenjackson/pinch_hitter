@@ -27,7 +27,8 @@ module PinchHitter
   end
 
   def store(endpoint, content)
-    @session.post "/store?endpoint=#{endpoint}", content
+    content_type = message_store.determine_content_type(content)
+    @session.post "/store?endpoint=#{endpoint}", content, 'Content-Type' => content_type
   end
 
   def register_module(endpoint, handler)

@@ -10,3 +10,6 @@ Add ability to register modules for custom message handling
 === Release 0.4 / 2014-3-3
 * Add ability to retrieve requests made by the application
 * Support PUT, PATCH, DELETE
+
+=== Release 0.5 / 2014-7-3
+* Fix issue where priming large messages would cause a 500
