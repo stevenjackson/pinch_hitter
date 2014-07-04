@@ -13,3 +13,6 @@ Add ability to register modules for custom message handling
 
 === Release 0.5 / 2014-7-3
 * Fix issue where priming large messages would cause a 500
+
+=== Release 0.5.1 / 2014-7-3
+* Travis revealed some test issues with newer gems.  Thanks Travis CI!

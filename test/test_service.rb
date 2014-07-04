@@ -12,13 +12,12 @@ class TestService < MiniTest::Test
   end
 
   def test_retrieve
-    post "/store", xml_message 
+    post "/store", xml_message
     post "/respond", ''
 
     assert_received xml_message
     assert_equal 200, last_response.status
   end
-
 
   def test_result_should_be_xml
     post "/store", xml_message
@@ -31,7 +30,7 @@ class TestService < MiniTest::Test
     post "/store", yml_message
     post "/respond", ''
 
-    assert_equal 'application/json;charset=utf-8', last_response.content_type
+    assert_equal 'application/json', last_response.content_type
   end
 
   def test_reset
@@ -43,24 +42,23 @@ class TestService < MiniTest::Test
   end
 
   def test_store_with_params
-    post '/store?endpoint=test2/subtest', yml_message 
+    post '/store?endpoint=test2/subtest', yml_message
     post '/test2/subtest', ''
-    
+
     assert_received yml_message
   end
 
   def test_store_as_subendpoint
-    post '/store/test2/subtest', yml_message 
+    post '/store/test2/subtest', yml_message
     post '/test2/subtest', ''
-    
+
     assert_received yml_message
   end
- 
 
   def test_multi_endpoints
     post '/store/endpoint1', xml_message
     post '/store/endpoint2', yml_message
-  
+
     post '/endpoint2', ''
     assert_received yml_message
 
@@ -74,7 +72,7 @@ class TestService < MiniTest::Test
     post '/store/endpoint2', yml_message
     post '/store/endpoint2', yml_message
     post '/store/endpoint2', yml_message
-  
+
     post '/endpoint2', ''
     assert_received yml_message
     post '/endpoint1', ''
@@ -133,5 +131,4 @@ class TestService < MiniTest::Test
     assert_equal user_post, response.first['body']
     assert response.first['headers']
   end
-
 end

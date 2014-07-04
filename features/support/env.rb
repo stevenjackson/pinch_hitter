@@ -1,4 +1,3 @@
-require 'rspec-expectations'
 require 'pinch_hitter'
 require 'net/http'
 
