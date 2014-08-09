@@ -37,7 +37,7 @@ class TestPinchHitter < MiniTest::Test
   end
 
   def test_message_store_init
-   @test.messages_directory = "/bar" 
+   @test.messages_directory = "/bar"
    assert_equal "/bar", @test.message_store.message_directory
   end
 
@@ -87,4 +87,8 @@ class TestPinchHitter < MiniTest::Test
     assert_equal messages, @test.received_messages('/foo')
   end
 
+  def test_dont_need_messages_directory_to_store_messages
+    @test.message_store = nil
+    @test.store '/foo', '{"this-is": "json"}'
+  end
 end

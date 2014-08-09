@@ -16,3 +16,7 @@ Add ability to register modules for custom message handling
 
 === Release 0.5.1 / 2014-7-3
 * Travis revealed some test issues with newer gems.  Thanks Travis CI!
+
+=== Release 0.5.2 / 2014-8-8
+* Fix edge case where storing simple messages would fail without a messages
+directory.  Thanks to Dan Parks and Nathan Wallace for pointing it out!

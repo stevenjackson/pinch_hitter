@@ -1,9 +1,11 @@
 require "pinch_hitter/version"
 require "pinch_hitter/message/message_store"
+require "pinch_hitter/message/content_type"
 require "pinch_hitter/service/runner"
 
 module PinchHitter
   include PinchHitter::Service::Runner
+  include PinchHitter::Message::ContentType
   attr_accessor :message_store
 
   def messages_directory=(dir)
@@ -27,7 +29,7 @@ module PinchHitter
   end
 
   def store(endpoint, content)
-    content_type = message_store.determine_content_type(content)
+    content_type = determine_content_type(content)
     @session.post "/store?endpoint=#{endpoint}", content, 'Content-Type' => content_type
   end
 
@@ -44,5 +46,4 @@ module PinchHitter
   def received_messages(endpoint)
     request_log(endpoint).map { |request| request.body }
   end
-
 end
