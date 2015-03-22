@@ -1,7 +1,6 @@
 require 'pinch_hitter/message/xml'
 require 'pinch_hitter/message/json'
 require 'pinch_hitter/message/content_type'
-require 'pinch_hitter/core_ext/string'
 
 module PinchHitter::Message
     class MessageStore

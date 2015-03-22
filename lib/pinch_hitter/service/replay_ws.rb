@@ -5,6 +5,7 @@ require 'nokogiri'
 require 'json'
 
 require 'pinch_hitter/service/endpoint_handlers'
+require 'pinch_hitter/service/endpoint_recorders'
 require 'pinch_hitter/message/content_type'
 
 module PinchHitter::Service
@@ -16,6 +17,7 @@ module PinchHitter::Service
     configure do
       enable :cross_origin
       @@handlers = EndpointHandlers.new
+      @@recorder = EndpointRecorders.new
       #SOAP expects a mime_type of text/xml
       mime_type :xml, "text/xml"
       mime_type :json, "application/json"
@@ -29,6 +31,7 @@ module PinchHitter::Service
 
     post '/reset' do
       @@handlers.reset
+      @@recorder.reset
       status 200
     end
 
@@ -76,32 +79,46 @@ module PinchHitter::Service
     end
 
     def store(endpoint='/', message=nil)
+      endpoint = normalize(endpoint)
       @@handlers.store_message endpoint, message
     end
 
     def respond(endpoint='/', request=nil)
-      message = @@handlers.respond_to endpoint, wrap(request)
+      endpoint = normalize(endpoint)
+      body, request = wrap(request)
+      @@recorder.record(endpoint, request)
+      message = @@handlers.respond_to endpoint, body
       content_type determine_content_type message
       puts "No message found for #{endpoint}" unless message
       message
     end
 
     def register_module(endpoint='/', mod='')
+      endpoint = normalize(endpoint)
       @@handlers.register_module endpoint, Marshal.load(mod)
     end
 
     def requests endpoint
+      endpoint = normalize(endpoint)
       content_type 'application/json'
-      { requests: @@handlers.requests(endpoint) }.to_json
+      { requests: @@recorder.requests(endpoint) }.to_json
     end
 
-    def wrap request
-      return nil unless request
-      { headers: request_headers, body: request.body.read }
+    def wrap(request)
+      return [nil, nil] unless request
+
+      body = request.body.read
+      [body, { headers: request_headers, body: body }]
     end
 
     def request_headers
       env.select { |key, value| key.upcase == key }
     end
+
+    def normalize(endpoint)
+      return endpoint if endpoint =~ /^\//
+      "/#{endpoint}"
+    end
+
   end
 end

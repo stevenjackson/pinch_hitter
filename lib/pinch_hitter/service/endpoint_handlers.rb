@@ -1,5 +1,6 @@
+require 'pinch_hitter/core_ext/string'
+require 'pinch_hitter/core_ext/nil_class'
 require_relative 'message_queue'
-require_relative 'endpoint_recorder'
 
 module PinchHitter::Service
   class EndpointHandlers
@@ -7,21 +8,18 @@ module PinchHitter::Service
       @handlers ||= {}
     end
 
-    def store_message(endpoint, body)
-      handler_for(endpoint).store body.squish
+    def store_message(endpoint, message)
+      handler = handler_for(endpoint)
+      handler.store(message.squish) if handler.respond_to? :store
     end
 
     def respond_to(endpoint='/', request=nil)
       message = handler_for(endpoint).respond_to(request)
-      message.squish if message
-    end
-
-    def requests(endpoint)
-      handler_for(endpoint).requests
+      message.squish
     end
 
     def handler_for(endpoint='/')
-      handlers[normalize(endpoint)] || store_handler(endpoint)
+      handlers[endpoint] || store_handler(endpoint)
     end
 
     def register_module(endpoint, mod)
@@ -31,16 +29,13 @@ module PinchHitter::Service
     end
 
     def store_handler(endpoint, handler=MessageQueue.new)
-      handlers[normalize(endpoint)] = EndpointRecorder.new handler
-    end
-
-    def normalize(endpoint)
-      return endpoint if endpoint =~ /^\//
-      "/#{endpoint}"
+      handlers[endpoint] = handler
     end
 
     def reset
-      handlers.values.each(&:reset)
+      handlers.values.each do |handler|
+        handler.reset if handler.respond_to? :reset
+      end
     end
   end
 end
