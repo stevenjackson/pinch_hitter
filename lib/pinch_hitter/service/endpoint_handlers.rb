@@ -13,9 +13,13 @@ module PinchHitter::Service
       handler.store(message.squish) if handler.respond_to? :store
     end
 
-    def respond_to(endpoint='/', request=nil)
-      message = handler_for(endpoint).respond_to(request)
-      message.squish
+    def respond_to(endpoint='/', body=nil, request=nil, response = nil)
+      handler = handler_for(endpoint)
+      if handler.respond_to?(:handle_request)
+        handler.handle_request(request, response)
+      else
+        handler.respond_to(body).squish
+      end
     end
 
     def handler_for(endpoint='/')

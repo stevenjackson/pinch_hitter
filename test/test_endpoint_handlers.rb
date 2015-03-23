@@ -40,12 +40,24 @@ class TestEndpointHandlers < MiniTest::Test
     assert_equal "THIS IS A TEST", @handlers.respond_to('endpoint')
   end
 
+  def test_full_request_module_with_marshalling
+    mod = Marshal.dump(RequestHandlerTest)
+    @handlers.register_module('endpoint', Marshal.load(mod))
+    assert_equal "HANDLING REQUESTS", @handlers.respond_to('endpoint')
+  end
+
   module TestModule
     def respond_to(msg)
       test_message
     end
     def test_message
       "THIS IS A TEST"
+    end
+  end
+
+  module RequestHandlerTest
+    def handle_request(request, response)
+      "HANDLING REQUESTS"
     end
   end
 end

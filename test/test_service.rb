@@ -147,4 +147,23 @@ class TestService < MiniTest::Test
     assert_equal 'no-cache, no-store', last_response['Cache-Control']
     app.disable :no_cache
   end
+
+  def test_request_handler
+    post '/register_module?endpoint=stuff', Marshal.dump(TestRequestHandler)
+    post '/stuff', ''
+
+    assert_received xml_message
+    assert_equal 202, last_response.status
+    assert(last_response.headers.include? "Kyrie")
+  end
+
+  module TestRequestHandler
+    include MessageAssertions
+    def handle_request(request, response)
+      response.status = 202
+      response["Kyrie"] =  "Irving"
+      response.body = xml_message.squish
+      response
+    end
+  end
 end

@@ -87,9 +87,11 @@ module PinchHitter::Service
       endpoint = normalize(endpoint)
       body, request = wrap(request)
       @@recorder.record(endpoint, request)
-      message = @@handlers.respond_to endpoint, body
-      content_type determine_content_type message
-      puts "No message found for #{endpoint}" unless message
+      message = @@handlers.respond_to(endpoint, body, request, response)
+      if message.is_a? String
+        content_type determine_content_type message
+        puts "No message found for #{endpoint}" unless message
+      end
       message
     end
 
