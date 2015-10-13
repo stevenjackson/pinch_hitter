@@ -2,6 +2,7 @@ require "pinch_hitter/version"
 require "pinch_hitter/message/message_store"
 require "pinch_hitter/message/content_type"
 require "pinch_hitter/service/runner"
+require "net/http"
 
 module PinchHitter
   include PinchHitter::Service::Runner
