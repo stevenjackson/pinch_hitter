@@ -28,7 +28,7 @@ module PinchHitter::Message
           hash[key] = value
         end
       end
-      doc.to_s
+      doc.to_json
     end
 
     def find_nested_hash(parent, key)

@@ -24,3 +24,8 @@ directory.  Thanks to Dan Parks and Nathan Wallace for pointing it out!
 === Release 0.5.3 / 2015-8-14
 * Add ability to silence the sintatra/webrick output and keep it out of the
 test logs.
+
+=== Release 0.5.4 / 2015-11-5
+* Add require for Net::HTTP as some rubies can't resolve it properly - Thanks
+@kumichou!
+* Convert JSON back to JSON after applying overrides - Thanks Tim Conner!
