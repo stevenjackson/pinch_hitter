@@ -1,5 +1,6 @@
 require 'bundler/setup'
 require 'sinatra/base'
+require 'sinatra/cross_origin'
 require 'nokogiri'
 require 'json'
 
@@ -10,7 +11,10 @@ module PinchHitter::Service
   class ReplayWs < Sinatra::Base
     include PinchHitter::Message::ContentType
 
+    register Sinatra::CrossOrigin
+
     configure do
+      enable :cross_origin
       @@handlers = EndpointHandlers.new
       #SOAP expects a mime_type of text/xml
       mime_type :xml, "text/xml"

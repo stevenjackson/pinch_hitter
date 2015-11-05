@@ -29,3 +29,6 @@ test logs.
 * Add require for Net::HTTP as some rubies can't resolve it properly - Thanks
 @kumichou!
 * Convert JSON back to JSON after applying overrides - Thanks Tim Conner!
+
+=== Release 0.5.5 / 2015-11-5
+* Allow Cross-Origin requests
