@@ -19,6 +19,12 @@ module PinchHitter::Service
       #SOAP expects a mime_type of text/xml
       mime_type :xml, "text/xml"
       mime_type :json, "application/json"
+      disable :no_cache
+    end
+
+
+    before do
+      cache_control :no_cache, :no_store if settings.no_cache
     end
 
     post '/reset' do

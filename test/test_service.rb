@@ -131,4 +131,20 @@ class TestService < MiniTest::Test
     assert_equal user_post, response.first['body']
     assert response.first['headers']
   end
+
+  def test_cache_control_defaults_to_nil
+    post "/store", xml_message
+    post "/respond", ''
+
+    assert_nil last_response['Cache-Control']
+  end
+
+  def test_cache_control
+    app.enable :no_cache
+    post "/store", xml_message
+    post "/respond", ''
+
+    assert_equal 'no-cache, no-store', last_response['Cache-Control']
+    app.disable :no_cache
+  end
 end

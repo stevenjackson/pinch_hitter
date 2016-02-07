@@ -8,9 +8,15 @@ module PinchHitter::Service::Runner
     @silent_console = true
   end
 
+  def no_cache
+    @no_cache = true
+    @app.settings.enable :no_cache if @app
+  end
+
   def start_service(host, port, timeout=10)
     Thread.abort_on_exception = true
     @app = PinchHitter::Service::ReplayWs.new
+    @app.settings.enable :no_cache if @no_cache
     @replay_service = Thread.new do
       Rack::Handler::WEBrick.run @app, service_options(host, port)
     end
