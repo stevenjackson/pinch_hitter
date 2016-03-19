@@ -1,5 +1,7 @@
-# Pinch Hitter
+# Pinch Hitter [![Build Status](https://travis-ci.org/stevenjackson/pinch_hitter.svg?branch=master)](https://travis-ci.org/stevenjackson/pinch_hitter)
+
 Simple replay mock for web service testing
+
 
 ## Installation
 
