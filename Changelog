@@ -37,3 +37,6 @@ test logs.
 * Add ability to disable cache control (useful for IE testing)
 * Allow client to register a module that will hydrate the response object.
 * Break apart recording and responding to better support full response payloads
+
+=== Release 0.5.7 / ???
+* Removed references to 1.9.2 which has long been EOL'd. - Thanks @garyjohnson!
