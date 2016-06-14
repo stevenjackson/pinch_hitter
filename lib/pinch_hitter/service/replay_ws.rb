@@ -1,7 +1,6 @@
 require 'bundler/setup'
 require 'sinatra/base'
 require 'sinatra/cross_origin'
-require 'nokogiri'
 require 'json'
 
 require 'pinch_hitter/service/endpoint_handlers'

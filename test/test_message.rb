@@ -26,7 +26,7 @@ class TestMessage < MiniTest::Test
   end
 
   def xml_message
-%Q{<?xml version="1.0" encoding="UTF-8"?>
+%Q{<?xml version='1.0' encoding='UTF-8'?>
 <Body/>
 }
   end
@@ -42,7 +42,7 @@ class TestMessage < MiniTest::Test
     @messages.message_directory = "/foo"
     assert_equal "/foo", @messages.message_directory
   end
-  
+
   def test_loads_xml
     assert_equal xml_message, @messages.load(xml_filename.to_sym)
   end
@@ -52,7 +52,7 @@ class TestMessage < MiniTest::Test
   end
 
   def test_message_no_whitespace
-    squish = %Q{<?xml version="1.0" encoding="UTF-8"?><Body/>}
+    squish = %Q{<?xml version='1.0' encoding='UTF-8'?><Body/>}
     assert_equal squish, @messages.load(xml_filename.to_sym).squish
   end
 

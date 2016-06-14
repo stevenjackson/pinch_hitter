@@ -1,4 +1,5 @@
-require 'nokogiri'
+require 'rexml/document'
+require 'rexml/xpath'
 
 module PinchHitter::Message
   module Xml
@@ -12,7 +13,8 @@ module PinchHitter::Message
 
     private
     def load_xml_file(filename)
-      Nokogiri::XML File.open filename
+      file = File.new filename
+      REXML::Document.new file
     end
 
     def replace_xml(xml, key, text)
@@ -21,15 +23,15 @@ module PinchHitter::Message
 
       if parts.length == 1
         #match text node
-        tag.content = text
+        tag.text = text
       else
         #match attribute
-        tag[parts.last] = text
+        tag.attributes[parts.last] = text
       end
     end
 
     def find_node(xml, tag)
-      xml.at_xpath("//#{tag}", xml.collect_namespaces)
+      REXML::XPath.first(xml, "//#{tag}")
     end
   end
 end

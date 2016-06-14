@@ -18,7 +18,6 @@ Gem::Specification.new do |gem|
   gem.require_paths = ["lib"]
 
   gem.add_dependency 'sinatra', '>= 1.3.3'
-  gem.add_dependency 'nokogiri', '>= 1.5.6'
   gem.add_dependency 'json', '>= 1.7.6'
   gem.add_dependency 'sinatra-cross_origin', '~> 0.3.1'
 

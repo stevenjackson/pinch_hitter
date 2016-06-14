@@ -19,18 +19,18 @@ class TestXmlMessage < MiniTest::Test
   end
 
   def our_message
-%Q{<?xml version="1.0" encoding="UTF-8"?>
+%Q{<?xml version='1.0' encoding='UTF-8'?>
 <wrapper>
-  <Body xmlns:ns="http://www.abc.org/OTA/2003/05">
+  <Body xmlns:ns='http://www.abc.org/OTA/2003/05'>
     <node>text</node>
-    <withattrib attrib="value"/>
+    <withattrib attrib='value'/>
     <ns:testnode>text</ns:testnode>
   </Body>
 </wrapper>
 }
   end
 
-  def test_message_no_overrides 
+  def test_message_no_overrides
     assert_equal our_message, @test.xml_message(filename)
   end
 
@@ -42,7 +42,7 @@ class TestXmlMessage < MiniTest::Test
   def test_message_tag_override_attrib
     xml = @test.xml_message(filename,
         {"withattrib@attrib" => "BetterValue"})
-    assert xml.include? "<withattrib attrib=\"BetterValue\""
+    assert xml.include? "<withattrib attrib='BetterValue'"
   end
 
   def test_message_tag_override_with_namespace
