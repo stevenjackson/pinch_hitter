@@ -38,5 +38,6 @@ test logs.
 * Allow client to register a module that will hydrate the response object.
 * Break apart recording and responding to better support full response payloads
 
-=== Release 0.5.7 / ???
+=== Release 0.6.0 / 2016-06-14
 * Removed references to 1.9.2 which has long been EOL'd. - Thanks @garyjohnson!
+* Remove dependency on nokogiri
