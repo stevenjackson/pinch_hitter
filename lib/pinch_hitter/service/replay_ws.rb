@@ -21,6 +21,7 @@ module PinchHitter::Service
       mime_type :xml, "text/xml"
       mime_type :json, "application/json"
       disable :no_cache
+      disable :protection
     end
 
 
