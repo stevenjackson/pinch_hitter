@@ -40,3 +40,14 @@ Feature:  Test WS replay
     Given I have a car reservation I want to delete
     When I delete a car reservation
     Then I should see a car reservation cancellation
+
+  Scenario: Unconfigured routes respond with Page Not Found
+    When I make a reservation for a car rental I never set up
+    Then I see that the car reservation was not found
+
+  Scenario: Exhausted routes respond with Page Not Found
+    Given I want a car rental
+    When I make a reservation
+    Then I see a car reservation
+    When I make a reservation again
+    Then I see that the car reservation was not found

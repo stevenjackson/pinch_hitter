@@ -6,8 +6,12 @@ Given /^I want a car rental$/ do
   mock.prime '/car_rental', :car_rental
 end
 
-When /^I make a reservation$/ do
+When /^I make a reservation(?: again)?$/ do
   @response = app.post '/car_rental', '{"reservation": "yes"}'
+end
+
+When /^I make a reservation for a car rental I never set up$/ do
+  @response = app.post '/car_rental_bogus', '{"reservation": "yes"}'
 end
 
 Then /^I see a car reservation$/ do
@@ -20,6 +24,11 @@ end
 
 Then /^I see a car reservation with a "(.*?)" of "(.*?)"$/ do |tag, text|
   @response.body.to_s.should == messages.load(:car_rental, { tag => text }).squish
+end
+
+Then /^I see that the car reservation was not found$/ do
+  @response.code.should == "404"
+  @response.body.to_s.should == ""
 end
 
 Given /^I want to lookup a definition$/ do

@@ -37,7 +37,7 @@ class TestService < MiniTest::Test
     post "/reset", ''
     assert_equal 200, last_response.status
     post "/respond", ''
-    assert_equal 200, last_response.status
+    assert_equal 404, last_response.status
     assert_equal '', last_response.body
   end
 

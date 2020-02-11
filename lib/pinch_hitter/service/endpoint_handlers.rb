@@ -26,6 +26,10 @@ module PinchHitter::Service
       handlers[endpoint] || store_handler(endpoint)
     end
 
+    def handler_for?(endpoint)
+      handlers.has_key?(endpoint)
+    end
+
     def register_module(endpoint, mod)
       handler = Object.new
       handler.extend(mod)
