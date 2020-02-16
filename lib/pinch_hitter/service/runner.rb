@@ -18,7 +18,7 @@ module PinchHitter::Service::Runner
     @app = PinchHitter::Service::ReplayWs.new
     @app.settings.enable :no_cache if @no_cache
     @replay_service = Thread.new do
-      Rack::Handler::WEBrick.run @app, service_options(host, port)
+      Rack::Handler::WEBrick.run @app, **service_options(host, port)
     end
     wait_for_replay(timeout)
   end

@@ -15,7 +15,7 @@ When /^I make a reservation for a car rental I never set up$/ do
 end
 
 Then /^I see a car reservation$/ do
-  @response.body.to_s.should == messages.load(:car_rental).squish
+  expect(@response.body.to_s).to eq messages.load(:car_rental).squish
 end
 
 Given /^I want a car rental with a "(.*?)" of "(.*?)"$/ do |tag, text|
@@ -23,12 +23,12 @@ Given /^I want a car rental with a "(.*?)" of "(.*?)"$/ do |tag, text|
 end
 
 Then /^I see a car reservation with a "(.*?)" of "(.*?)"$/ do |tag, text|
-  @response.body.to_s.should == messages.load(:car_rental, { tag => text }).squish
+  expect(@response.body.to_s).to eq messages.load(:car_rental, { tag => text }).squish
 end
 
 Then /^I see that the car reservation was not found$/ do
-  @response.code.should == "404"
-  @response.body.to_s.should == ""
+  expect(@response.code).to eq "404"
+  expect(@response.body).to eq ""
 end
 
 Given /^I want to lookup a definition$/ do
@@ -40,7 +40,7 @@ When /^I query the glossary$/ do
 end
 
 Then /^I see a definition$/ do
-  @response.body.to_s.should == messages.load(:glossary).squish
+  expect(@response.body.to_s).to eq messages.load(:glossary).squish
 end
 
 Given /^I want to lookup a definition with a "(.*?)" of "(.*?)"$/ do |key, value|
@@ -48,7 +48,7 @@ Given /^I want to lookup a definition with a "(.*?)" of "(.*?)"$/ do |key, value
 end
 
 Then /^I see a definition with a "(.*?)" of "(.*?)"$/ do |key, value|
-  @response.body.to_s.should == messages.load(:glossary, { key => value }).squish
+  expect(@response.body.to_s).to eq messages.load(:glossary, { key => value }).squish
 end
 
 Given(/^I want to do some fancy processing$/) do
@@ -60,7 +60,7 @@ When(/^I query my service with (.*?)$/) do |request|
 end
 
 Then(/^I see (.*?) in the service response$/) do |response|
-  @response.body.to_s.should == "<response>#{response}</response>"
+  expect(@response.body.to_s).to eq "<response>#{response}</response>"
 end
 
 Given(/^I have a car reservation I want to delete$/) do
@@ -72,5 +72,5 @@ When(/^I delete a car reservation$/) do
 end
 
 Then(/^I should see a car reservation cancellation$/) do
-  @response.body.to_s.should == messages.load(:cancelled_reservation).squish
+  expect( @response.body.to_s).to eq messages.load(:cancelled_reservation).squish
 end

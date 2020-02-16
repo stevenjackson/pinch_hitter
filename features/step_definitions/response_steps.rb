@@ -9,5 +9,5 @@ When(/^I make a request$/) do
 end
 
 Then(/^my response has a no\-cache,no\-store Cache\-Control header$/) do
-  @response.header['Cache-Control'].should == 'no-cache, no-store'
+  expect(@response.header['Cache-Control']).to eq 'no-cache, no-store'
 end

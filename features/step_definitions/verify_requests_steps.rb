@@ -9,7 +9,7 @@ When /^I make (\d+) posts$/ do |number|
 end
 
 Then /^the service has received (\d+) posts(?:s?)$/ do |number|
-  mock.request_log('/test_post').count.should == number.to_i
+  expect(mock.request_log('/test_post').count).to eq number.to_i
 end
 
 When /^I do a (.*?) on "(.*?)"$/ do |method, endpoint|
@@ -17,12 +17,12 @@ When /^I do a (.*?) on "(.*?)"$/ do |method, endpoint|
 end
 
 Then(/^the service has recieved a request on "(.*?)"$/) do |endpoint|
-  mock.request_log(endpoint).count.should be > 0
+  expect(mock.request_log(endpoint).count).to be > 0
 end
 
 When /^the headers for the request on "(.*?)" should contain:$/ do |endpoint, table|
   headers = mock.request_log(endpoint).first.headers
   table.rows_hash.each do |key, value|
-    headers[key].should == value
+    expect(headers[key]).to eq value
   end
 end

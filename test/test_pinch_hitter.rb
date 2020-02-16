@@ -76,6 +76,7 @@ class TestPinchHitter < MiniTest::Test
   def test_request_headers
     session.delete '/foo'
     headers = @test.request_log('/foo').first.headers
+    assert headers.keys.include? 'CONTENT_TYPE'
   end
 
   def test_received_messages

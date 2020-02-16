@@ -3,7 +3,7 @@ require 'pinch_hitter/message/json'
 require 'pinch_hitter/message/content_type'
 
 module PinchHitter::Message
-    class MessageStore
+  class MessageStore
     include Xml
     include Json
     include ContentType
