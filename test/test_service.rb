@@ -148,6 +148,13 @@ class TestService < MiniTest::Test
     app.disable :no_cache
   end
 
+  def test_cors_protections_are_off
+    post "/store", xml_message
+    post "/respond", ''
+
+    assert_equal last_response["X-Frame-Options"], nil
+  end
+
   def test_request_handler
     post '/register_module?endpoint=stuff', Marshal.dump(TestRequestHandler)
     post '/stuff', ''
