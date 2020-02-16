@@ -152,7 +152,7 @@ class TestService < MiniTest::Test
     post "/store", xml_message
     post "/respond", ''
 
-    assert_equal last_response["X-Frame-Options"], nil
+    assert_nil last_response["X-Frame-Options"]
   end
 
   def test_request_handler

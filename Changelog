@@ -1,43 +1,47 @@
-=== Release 0.1 / 2013-1-20
-Initial release of the gem
+=== release 0.7.0 / 2020-02-16
+* Disable request security (#16) - Thanks @nwallace!
+* Return 404 for exhausted/unconfigured endpoints (#14) - Thanks @nwallace!
 
-=== Release 0.2 / 2013-1-27
-Switch json to do overrides by key rather than path (like xml)
-
-=== Release 0.3 / 2013-3-22
-Add ability to register modules for custom message handling
-
-=== Release 0.4 / 2014-3-3
-* Add ability to retrieve requests made by the application
-* Support PUT, PATCH, DELETE
-
-=== Release 0.5 / 2014-7-3
-* Fix issue where priming large messages would cause a 500
-
-=== Release 0.5.1 / 2014-7-3
-* Travis revealed some test issues with newer gems.  Thanks Travis CI!
-
-=== Release 0.5.2 / 2014-8-8
-* Fix edge case where storing simple messages would fail without a messages
-directory.  Thanks to Dan Parks and Nathan Wallace for pointing it out!
-
-=== Release 0.5.3 / 2015-8-14
-* Add ability to silence the sintatra/webrick output and keep it out of the
-test logs.
-
-=== Release 0.5.4 / 2015-11-5
-* Add require for Net::HTTP as some rubies can't resolve it properly - Thanks
-@kumichou!
-* Convert JSON back to JSON after applying overrides - Thanks Tim Conner!
-
-=== Release 0.5.5 / 2015-11-5
-* Allow Cross-Origin requests
+=== release 0.6.0 / 2016-06-14
+* removed references to 1.9.2 which has long been eol'd. - thanks @garyjohnson!
+* remove dependency on nokogiri
 
 === Release 0.5.6 / 2016-03-19
 * Add ability to disable cache control (useful for IE testing)
 * Allow client to register a module that will hydrate the response object.
 * Break apart recording and responding to better support full response payloads
 
-=== Release 0.6.0 / 2016-06-14
-* Removed references to 1.9.2 which has long been EOL'd. - Thanks @garyjohnson!
-* Remove dependency on nokogiri
+=== Release 0.5.5 / 2015-11-5
+* Allow Cross-Origin requests
+
+=== Release 0.5.4 / 2015-11-5
+* Add require for Net::HTTP as some rubies can't resolve it properly - Thanks
+@kumichou!
+* Convert JSON back to JSON after applying overrides - Thanks Tim Conner!
+
+=== Release 0.5.3 / 2015-8-14
+* Add ability to silence the sintatra/webrick output and keep it out of the
+test logs.
+
+=== Release 0.5.2 / 2014-8-8
+* Fix edge case where storing simple messages would fail without a messages
+directory.  Thanks to Dan Parks and Nathan Wallace for pointing it out!
+
+=== Release 0.5.1 / 2014-7-3
+* Travis revealed some test issues with newer gems.  Thanks Travis CI!
+
+=== Release 0.5 / 2014-7-3
+* Fix issue where priming large messages would cause a 500
+
+=== Release 0.4 / 2014-3-3
+* Add ability to retrieve requests made by the application
+* Support PUT, PATCH, DELETE
+
+=== Release 0.3 / 2013-3-22
+Add ability to register modules for custom message handling
+
+=== Release 0.2 / 2013-1-27
+Switch json to do overrides by key rather than path (like xml)
+
+=== Release 0.1 / 2013-1-20
+Initial release of the gem

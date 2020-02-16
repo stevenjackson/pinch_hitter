@@ -41,17 +41,17 @@ module PinchHitter::Service
     end
 
     post '/store' do
-      store request["endpoint"], request.body.read
+      store params["endpoint"], request.body.read
       status 200
     end
 
     post '/register_module' do
-      register_module request["endpoint"], request.body.read
+      register_module params["endpoint"], request.body.read
       status 200
     end
 
     get '/received_requests' do
-      requests request["endpoint"]
+      requests request.params["endpoint"]
     end
 
     post '/respond' do

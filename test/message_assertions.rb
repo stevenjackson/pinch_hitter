@@ -1,6 +1,6 @@
 module MessageAssertions
   def xml_message
-    message = %Q{<?xml version="1.0" encoding="UTF-8"?>
+    %Q{<?xml version="1.0" encoding="UTF-8"?>
       <env:Envelope xmlns:env="http://www.w3.org/2003/05/soap-envelope" xmlns:replay="http://www.leandog.com/replay">
         <env:Body>
           <replay:Response>BARK!</replay:Response>
